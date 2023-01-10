@@ -1,0 +1,64 @@
+%mendeklarasikan titik-titik sampel (x,v)
+x = 0:pi/4:2*pi;
+v = cos(x);
+%mendeklarasikan titik di sumbu-x untuk interpolasi
+xq = 0:pi/16:2*pi;
+%interpolasi dan plot
+figure
+vq1 = interp1(x,v,xq);
+plot(x,v,'ro',xq,vq1,'b:.');
+xlim([0 2*pi]);
+title('Interpolasi linear/standar');
+
+
+
+----
+
+
+%mendeklarasikan titik-titik sampel (x,v)
+x = 0:pi/4:2*pi;
+v = cos(x);
+%mendeklarasikan titik di sumbu-x untuk interpolasi
+xq = 0:pi/16:2*pi;
+%interpolasi dan plot
+subplot(2,2,1)
+vq1 = interp1(x,v,xq,'nearest');
+plot(x,v,'ro',xq,vq1,'b:.');
+title('Interpolasi nearest');
+subplot(2,2,2)
+vq2 = interp1(x,v,xq,'linear');
+plot(x,v,'ro',xq,vq2,'b:.');
+title('Interpolasi linear');
+subplot(2,2,3)
+vq3 = interp1(x,v,xq,'spline');
+plot(x,v,'ro',xq,vq3,'b:.');
+title('Interpolasi spline');
+subplot(2,2,4)
+vq4 = interp1(x,v,xq,'cubic');
+plot(x,v,'ro',xq,vq4,'b:.');
+title('Interpolasi cubic')
+
+
+---
+%mendeklarasikan titik-titik sampel (X,Y,V)
+[X,Y] = meshgrid(-5:5);
+V = peaks(11);
+%mendeklarasikan titik di sumbu-x dan y
+[Xq,Yq] = meshgrid(-5:0.5:5);
+%interpolasi dan plot
+subplot(2,2,1)
+surf(X,Y,V)
+title('Plot 3D data sampel');
+subplot(2,2,2)
+Vq = interp2(X,Y,V,Xq,Yq);
+surf(Xq,Yq,Vq);
+title('Interpolasi linear');
+subplot(2,2,3)
+Vq2 = interp2(X,Y,V,Xq,Yq,'spline');
+surf(Xq,Yq,Vq2);
+title('Interpolasi spline');
+subplot(2,2,4)
+Vq3 = interp2(X,Y,V,Xq,Yq,'cubic');
+surf(Xq,Yq,Vq3);
+title('Interpolasi cubic');
+

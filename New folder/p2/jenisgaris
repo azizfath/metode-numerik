@@ -1,0 +1,7 @@
+x=linspace(0,2*%pi,200);
+y1=cos(x);
+y2=cos(x-0.5);
+y3=cos(x-1.0);
+
+plot(x,y1,'-',x,y2,'o',x,y3,':');
+grid

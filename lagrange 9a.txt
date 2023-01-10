@@ -1,0 +1,123 @@
+clc;
+clear;
+clear all;
+clf;
+
+syms x;
+
+suhu = [5 10 15 20 25 30];
+konsen10 = [11.6 10.3 9.1 8.2 7.4 6.8];
+konsen20 = [10.5 9.2 8.2 7.4 6.7 6.1];
+
+disp('Diketahui (Suhu, Konsentrasi 10, Konsentrasi 20');
+for i=1:6
+	fprintf('(%d,%1.1f,%1.1f', suhu(i), konsen10(i),konsen20(i));
+end
+
+fx=0;
+
+fprintf('\n\n');
+
+disp('Nilai L(X) untuk konsentrasi 10mg/L');
+for i = 1:6
+	qx = 1;
+	for j = 1:6
+		if (i~=j)
+			qx=qx*(x-suhu(j));
+		end
+	end
+	qx1 = subs(qx,x,suhu(i));
+	lx=qx/qx1;
+	lx1=collect(lx);
+	fprintf('L%d(x) = ',i);
+	disp(1x1);
+	fx=fx+konsen10(i)*lx;
+end
+px10=collect(fx);
+fprintf('Didapat rumus untuk konsentrasi klorida 10mg/L = ');
+disp(px10);
+fprintf('\nMaka konsentrasi larutan oksigen untuk suhu 22.4 pada konsentrasi klorida 10mg/L adalah = ');
+a=subs(px10,x,22.4);
+disp(a);
+
+
+fx=0;
+
+fprintf('\n\n');
+
+disp('Nilai L(X) untuk konsentrasi 20mg/L');
+for i = 1:6
+	qx = 1;
+	for j = 1:6
+		if (i~=j)
+			qx=qx*(x-suhu(j));
+		end
+	end
+	qx1 = subs(qx,x,suhu(i));
+	lx=qx/qx1;
+	lx1=collect(lx);
+	fprintf('L%d(x) = ',i);
+	disp(1x1);
+	fx=fx+konsen20(i)*lx;
+end
+px20=collect(fx);
+fprintf('Didapat rumus untuk konsentrasi klorida 20mg/L = ');
+disp(px20);
+fprintf('\nMaka konsentrasi larutan oksigen untuk suhu 22.4 pada konsentrasi klorida 20mg/L adalah = ');
+b=subs(px20,x,22.4);
+disp(b);
+
+
+====
+
+clc;clear;
+%membangun objek simbolik x
+syms x;
+%menginputkan banyaknya titik
+b=input('Banyak titik = ');
+%menginputkan masing-masing titik
+for i=1:b
+  fprintf('x%d',i)
+  bx(i)=input(' = ');
+  fprintf('y%d',i)
+   by(i)=input(' = ');
+end
+clc;
+%menampilkan titik-titik yang sudah diinputkan ke layar
+disp('Titik-titik yang diketahui adalah sebagai berikut:');
+for i=1:b
+   fprintf('(%d,%1.1f)',bx(i),by(i));
+end
+%inisialisasi fx
+fx=0;
+fprintf('\n\n');
+disp('Nilai masing-masing L(x)');
+
+% mulai proses pencarian q(x), qx1, lx, dan px
+for i=1:b
+  %inisialisasi qx
+  qx=1;
+
+   %perulangan untuk mencari qx
+  for j=1:b
+    if (i~=j)
+     qx=qx*(x-bx(j));
+    end
+  end
+%mencari qx1 dengan substitusi x ke gx
+qx1=subs(qx,x,bx(i));
+%mencari lx
+lx=qx/qx1;
+lx1=collect(lx);
+
+  %menampilkan lx
+  fprintf('L%d(x) = ',i); 
+  disp(lx1);
+
+%mencari fx
+  fx=fx+by(i)*lx;
+end
+%menyederhanakan fx menjadi px dan menampilkan ke layar
+px=collect(fx);
+fprintf('Hasilnya = ');
+disp(px);

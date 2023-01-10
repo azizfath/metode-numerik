@@ -1,0 +1,23 @@
+>> t=[0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]; %waktu pemakaian telepon
+
+>> f=[185 130 101 72 54 40 29 22 17 11 10 8 6 4 3 2 2 1 1 1 1]; %frekuensi
+
+>> tt=linspace(0,20,150);
+
+>> PP1=interp1(t,f,tt,'*linear');
+
+>> PP2=interp1(t,f,tt,'*nearest');
+
+>> PP3=interp1(t,f,tt,'*cubic');
+
+>> figure;
+
+>> plot(t,f,'k*',tt,PP1,'k-',tt,PP2,'k--',tt,PP3,'k:');
+
+>> grid on
+
+>> xlabel('Waktu pemakaian telepon (menit)'), ylabel('Frekuensi');
+
+>> legend('data','Interpolasi Linier','Interpolasi Nearest-neighbor','Interpolasi...
+kubik');
+>> title('Perbandingan Metode Interpolasi');
